@@ -12,7 +12,21 @@ This is a vscode extension that allows you to access your snippets from the comm
 
 - Snipper: Open your snippet list in the command palette
 
-### Contribution
+## Configuration
+You can replace the file containing the default snippet list with your own.
+Your file must be a json file containing an array of snippet objects and It should follow the snippet format guideline describe in the **Snippet format** section. If you want a example, you can check the default [`snippets`](https://raw.githubusercontent.com/arzeo68/snippet/master/snippet.json) file.
+
+To do this, in vscode press Ctrl + Shift + P,
+Then search for "Open User Settings (JSON)".  
+This command will open your vscode configuration file, and you'll need to add to it:
+
+```json
+    "snipper": {
+        "url": "https://raw.githubusercontent.com/arzeo68/snippet/master/snippet.json"
+    }
+```
+
+## Contribution
 
 #### Features
 You can contribute to this extension by adding new features or fixing bugs. To do so, you can fork this repository and create a pull request.
