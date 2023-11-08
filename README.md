@@ -10,7 +10,8 @@ This is a vscode extension that allows you to access your snippets from the comm
 
 ### `vscode` command
 
-- Snipper: Open your snippet list in the command palette
+- Snipper: Open your snippet list in the command palette (based on the programming language of the current file)
+- Snipper Update: Reload your snippet list from the url in the configuration
 
 ## Configuration
 You can replace the file containing the default snippet list with your own.
@@ -55,3 +56,7 @@ In the snippet body, you can use the following variables:
 - `$WORKSPACE_NAME`: workspace name
 - `$WORKSPACE_FOLDER`: workspace folder
 - ... and all the others default vscode variables
+
+## Known issues
+
+- If you are using Github to host your json file, It may take up to 5 minutes to update the snippet list after you pushed your changes because GitHub serves "raw" pages with `Cache-Control: max-age=300`.

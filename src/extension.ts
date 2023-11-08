@@ -5,7 +5,15 @@ import { listSnippets } from './list';
 import axios from 'axios';
 
 // get the json file from the url
-const getSnippets = (url: string): Thenable<JSON> => {
+const getSnippets = (): Thenable<JSON> => {
+
+
+	const config: string | undefined = vscode.workspace.getConfiguration().get('snipper.url');
+	if (config === undefined) vscode.window.showErrorMessage('Snipper: No URL found in the settings, Default URL will be used');
+
+	const url: string = config || "https://raw.githubusercontent.com/arzeo68/snippet/master/snippet.json";
+	if (url === "") vscode.window.showErrorMessage('Snipper: Please set the URL of your snippets in the settings');
+
 	return vscode.window.withProgress(
 		{
 		  location: vscode.ProgressLocation.Notification,
@@ -15,6 +23,7 @@ const getSnippets = (url: string): Thenable<JSON> => {
 		async () => {
 			try {
 				const response = await axios.get(url);
+				vscode.window.showInformationMessage('Snipper: Snippets loaded');
 				return response?.data;
 			} catch (error) {
 				vscode.window.showErrorMessage('Snipper: Please set the URL of your snippets in the settings');
@@ -28,13 +37,8 @@ const getSnippets = (url: string): Thenable<JSON> => {
 // your extension is activated the very first time the command is executed
 export async function activate(context: vscode.ExtensionContext) {
 
-	const config: string | undefined = vscode.workspace.getConfiguration().get('snipper.url');
-	if (config === undefined) vscode.window.showErrorMessage('Snipper: No URL found in the settings, Default URL will be used');
-
-	const snippetUrl: string = config || "https://raw.githubusercontent.com/arzeo68/snippet/master/snippet.json";
-	if (snippetUrl === "") vscode.window.showErrorMessage('Snipper: Please set the URL of your snippets in the settings');
-
-	const snippets = await getSnippets(snippetUrl) || {};
+	let snippets = await getSnippets() || {};
 	// COMMANDS
-	context.subscriptions.push(vscode.commands.registerCommand('extension.list', () => { listSnippets(snippets); }));
+	context.subscriptions.push(vscode.commands.registerCommand('extension.list', () => {listSnippets(snippets); }));
+	context.subscriptions.push(vscode.commands.registerCommand('extension.update', async () => {snippets = await getSnippets() || {}; }));
 }

@@ -14,7 +14,6 @@ const detectLanguage = (): string => {
 
 const getSnippetsToDisplay = (snippets: any, languageId: string): Snippet[] => {
     const snippetsToDisplay: Snippet[] = [];
-
     if (snippets[languageId] !== undefined)
         for (const snippet of snippets[languageId]) snippetsToDisplay.push(snippet);
 
@@ -40,9 +39,11 @@ export const listSnippets = (snippets: JSON) => {
     vscode.window.showQuickPick(snippetsToDisplay, { placeHolder: 'Select a snippet:' })
     .then(selectedSnippet => {
         if (selectedSnippet) {
-            if (vscode.window.activeTextEditor)
+            if (vscode.window.activeTextEditor) {
                 vscode.window.activeTextEditor.insertSnippet(new vscode.SnippetString(convertToWritableSnippets(selectedSnippet.snippet)));
+            }
         }
     });
 }
+
 

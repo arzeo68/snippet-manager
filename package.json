@@ -2,7 +2,7 @@
 	"name": "snipper",
 	"displayName": "Snipper",
 	"description": "Snipper is that allows you to import code snippets from a public github repository.",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"publisher": "alexis walter",
 	"repository": "https://github.com/arzeo68/snippet-manager",
 	"engines": {
@@ -18,6 +18,10 @@
 			{
 				"command": "extension.list",
 				"title": "Snipper"
+			},
+			{
+				"command": "extension.update",
+				"title": "Snipper Update"
 			}
 		]
 	},
