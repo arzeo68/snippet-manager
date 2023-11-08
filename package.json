@@ -1,9 +1,10 @@
 {
-	"name": "snipper",
-	"displayName": "Snipper",
-	"description": "Snipper is that allows you to import code snippets from a public github repository.",
-	"version": "0.0.2",
-	"publisher": "alexis walter",
+	"name": "snippercodemanager",
+	"displayName": "Snipper Manager",
+	"description": "Snipper allows you to import code snippets from a public github repository.",
+	"version": "0.0.3",
+	"publisher": "arzeo",
+	"icon": "documentation_asset/icon.png",
 	"repository": "https://github.com/arzeo68/snippet-manager",
 	"engines": {
 		"vscode": "^1.74.0"
