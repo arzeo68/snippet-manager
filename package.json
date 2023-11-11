@@ -1,8 +1,8 @@
 {
 	"name": "snippercodemanager",
 	"displayName": "Snipper Manager",
-	"description": "Snipper allows you to import code snippets from a public github repository.",
-	"version": "0.0.3",
+	"description": "Snipper allows you to import code snippets from a publicly hosted JSON.",
+	"version": "0.1.0",
 	"publisher": "arzeo",
 	"icon": "documentation_asset/icon.png",
 	"repository": "https://github.com/arzeo68/snippet-manager",

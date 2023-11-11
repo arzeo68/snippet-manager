@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { Snippet } from './snipper.interface';
+import { SnipperList, Snippet } from './Inteface/snipper.interface';
 
 
 const detectLanguage = (): string => {
@@ -12,14 +12,14 @@ const detectLanguage = (): string => {
     return '';
 }
 
-const getSnippetsToDisplay = (snippets: any, languageId: string): Snippet[] => {
+const getSnippetsToDisplay = (snipperList: SnipperList, languageId: string): Snippet[] => {
     const snippetsToDisplay: Snippet[] = [];
-    if (snippets[languageId] !== undefined)
-        for (const snippet of snippets[languageId]) snippetsToDisplay.push(snippet);
+    if (snipperList.map.get(languageId) !== undefined)
+        for (const ids of snipperList.map.get(languageId)!) snippetsToDisplay.push(snipperList.snippets[ids]);
 
     if (snippetsToDisplay.length === 0) {
         vscode.window.showErrorMessage('Snipper: No snippets found for this language');
-        snippetsToDisplay.push({ label: 'No snippets found for this language', description: '', snippet: [] });
+        snippetsToDisplay.push({ label: 'No snippets found for this language', description: '', language: "", snippet: [] });
     } 
     return snippetsToDisplay;
 }
@@ -32,7 +32,7 @@ const convertToWritableSnippets = (snippet: string[]): string => {
     return writableSnippet;
 }
 
-export const listSnippets = (snippets: JSON) => {
+export const listSnippets = (snippets: SnipperList) => {
     const language = detectLanguage();
     const snippetsToDisplay = getSnippetsToDisplay(snippets, language);
 

@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://bun.sh"><img src="documentation_asset/logo.png" alt="Logo" height=170></a>
+	<img src="documentation_asset/logo.png" alt="Logo" height=170>
 </p>
 
 # Snipper - VS Code Extension
@@ -42,11 +42,18 @@ You can also contribute by adding new snippets to the [`snippets`](https://githu
 {
 	"label": "Snippet name",
 	"description": "Snippet description",
+	"language": "programming language",
 	"body": [
 		"snippet body"
 	],
 }
 ```
+### Language
+The language field determines the programming language of the snippet. It is used to filter the snippet list in the command palette.
+
+- If you want your snippet to be available in multiple languages, you can separate them with a comma.
+
+### Variables
 In the snippet body, you can use the following variables:
 - `$1`, `$2`, ...: tab stops
 - `$0`: final cursor position
@@ -56,6 +63,13 @@ In the snippet body, you can use the following variables:
 - `$WORKSPACE_NAME`: workspace name
 - `$WORKSPACE_FOLDER`: workspace folder
 - ... and all the others default vscode variables
+
+## Future features
+
+- [ ] Add a way to add snippets from the extension
+- [ ] Add a way to edit snippets from the extension
+- [ ] Add a way to delete snippets from the extension
+- [ ] Add a way to add snippets to all languages
 
 ## Known issues
 
